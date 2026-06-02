@@ -1,0 +1,69 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.17.4-nightly.2026-03-09",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "2026-06-02T00:00:00.0000000Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "C:\\Users\\Pierre\\Documents\\CouchNetrunner\\source\\archive\\user\\pierre\\couchnetrunner\\localization\\en-us.json"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "JsonResource",
+      "cookingPlatform": "PLATFORM_PC",
+      "root": {
+        "HandleId": "0",
+        "Data": {
+          "$type": "localizationPersistenceOnScreenEntries",
+          "entries": [
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Next Channel",
+              "maleVariant": "",
+              "primaryKey": "3610001",
+              "secondaryKey": "CouchNetrunner-Quickhack-ChannelSurfTitle"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Change the channel on the media device.",
+              "maleVariant": "",
+              "primaryKey": "3610002",
+              "secondaryKey": "CouchNetrunner-Quickhack-ChannelSurfDescription"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Increase Volume",
+              "maleVariant": "",
+              "primaryKey": "3610003",
+              "secondaryKey": "CouchNetrunner-Quickhack-CrankItUpTitle"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Increase the volume on the media device.",
+              "maleVariant": "",
+              "primaryKey": "3610004",
+              "secondaryKey": "CouchNetrunner-Quickhack-CrankItUpDescription"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Decrease Volume",
+              "maleVariant": "",
+              "primaryKey": "3610005",
+              "secondaryKey": "CouchNetrunner-Quickhack-TurnItDownTitle"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Decrease the volume on the media device.",
+              "maleVariant": "",
+              "primaryKey": "3610006",
+              "secondaryKey": "CouchNetrunner-Quickhack-TurnItDownDescription"
+            }
+          ]
+        }
+      }
+    },
+    "EmbeddedFiles": []
+  }
+}
