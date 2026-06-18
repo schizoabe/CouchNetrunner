@@ -18,10 +18,16 @@ function CouchNetrunner:new()
             malfunctionIcon)
         local turnItDownUI    = CHS.API.CreateInteractionUI("TurnItDown", LocKey(3610005), LocKey(3610006),
             malfunctionIcon)
+        local turnOnUI        = CHS.API.CreateInteractionUI("TurnOn", LocKey(3610007), LocKey(3610008),
+            malfunctionIcon)
+        local turnOffUI       = CHS.API.CreateInteractionUI("TurnOff", LocKey(3610009), LocKey(3610010),
+            malfunctionIcon)
 
         local surfCost        = CHS.API.CreateQuickhackMemoryStatModifier("ChannelSurf", "BaseCost", "Additive", 1.0)
         local crankCost       = CHS.API.CreateQuickhackMemoryStatModifier("CrankItUp", "BaseCost", "Additive", 1.0)
         local turnCost        = CHS.API.CreateQuickhackMemoryStatModifier("TurnItDown", "BaseCost", "Additive", 1.0)
+        local turnOnCost      = CHS.API.CreateQuickhackMemoryStatModifier("TurnOn", "BaseCost", "Additive", 1.0)
+        local turnOffCost     = CHS.API.CreateQuickhackMemoryStatModifier("TurnOff", "BaseCost", "Additive", 1.0)
 
 
         CHS.API.CreateQuickhack("ChannelSurf", "", channelSurfUI, surfCost, 0.0, 0.5)
@@ -32,6 +38,12 @@ function CouchNetrunner:new()
 
         CHS.API.CreateQuickhack("TurnItDown", "", turnItDownUI, turnCost, 0.0, 0.3)
         TweakDB:SetFlat("DeviceAction.TurnItDown.instigatorPrereqs", {})
+
+        CHS.API.CreateQuickhack("TurnOn", "", turnOnUI, turnOnCost, 0.0, 0.5)
+        TweakDB:SetFlat("DeviceAction.TurnOn.instigatorPrereqs", {})
+
+        CHS.API.CreateQuickhack("TurnOff", "", turnOffUI, turnOffCost, 0.0, 0.5)
+        TweakDB:SetFlat("DeviceAction.TurnOff.instigatorPrereqs", {})
     end)
 
     return CouchNetrunner

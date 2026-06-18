@@ -3,7 +3,7 @@
     "WolvenKitVersion": "8.17.4-nightly.2026-03-09",
     "WKitJsonVersion": "0.0.9",
     "GameVersion": 2310,
-    "ExportedDateTime": "2026-06-02T00:00:00.0000000Z",
+    "ExportedDateTime": "2026-06-14T13:38:08.3374871Z",
     "DataType": "CR2W",
     "ArchiveFileName": "C:\\Users\\Pierre\\Documents\\CouchNetrunner\\source\\archive\\user\\pierre\\couchnetrunner\\localization\\en-us.json"
   },
@@ -59,6 +59,34 @@
               "maleVariant": "",
               "primaryKey": "3610006",
               "secondaryKey": "CouchNetrunner-Quickhack-TurnItDownDescription"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Turn On",
+              "maleVariant": "",
+              "primaryKey": "3610007",
+              "secondaryKey": "CouchNetrunner-Quickhack-TurnOnTitle"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Turn on the media device.",
+              "maleVariant": "",
+              "primaryKey": "3610008",
+              "secondaryKey": "CouchNetrunner-Quickhack-TurnOnDescription"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Turn Off",
+              "maleVariant": "",
+              "primaryKey": "3610009",
+              "secondaryKey": "CouchNetrunner-Quickhack-TurnOffTitle"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Turn off the media device.",
+              "maleVariant": "",
+              "primaryKey": "3610010",
+              "secondaryKey": "CouchNetrunner-Quickhack-TurnOffDescription"
             }
           ]
         }
