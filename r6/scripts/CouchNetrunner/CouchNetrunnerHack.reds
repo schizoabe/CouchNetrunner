@@ -1,6 +1,4 @@
 module CouchNetrunner
-import HackingExtensions.*
-
 
 public class TurnOnAction extends ActionBool {
   public final func SetProperties() -> Void {
@@ -47,15 +45,49 @@ public class TurnItDownAction extends ActionBool {
   }
 }
 
+@addField(PlayerPuppet)
+public let m_cnInjectHacks: Bool;
 
-
-@addMethod(ScriptableDeviceComponentPS)
-private final func CN_GetHackSystem() -> ref<CustomHackingSystem> {
-  let container: ref<ScriptableSystemsContainer> =
-    GameInstance.GetScriptableSystemsContainer(this.GetGameInstance());
-  return container.Get(n"HackingExtensions.CustomHackingSystem") as CustomHackingSystem;
+@wrapMethod(QuickHackableHelper)
+public final static func TranslateActionsIntoQuickSlotCommands(const actions: array<ref<DeviceAction>>, commands: script_ref<array<ref<QuickhackData>>>, gameObject: ref<GameObject>, scriptableComponentPS: ref<ScriptableDeviceComponentPS>) -> Void {
+  let player: ref<PlayerPuppet> = GetPlayer(gameObject.GetGame());
+  if IsDefined(player) {
+    player.m_cnInjectHacks = true;
+  };
+  wrappedMethod(actions, commands, gameObject, scriptableComponentPS);
+  if IsDefined(player) {
+    player.m_cnInjectHacks = false;
+  };
 }
 
+@wrapMethod(RPGManager)
+public final static func GetPlayerQuickHackListWithQuality(player: wref<PlayerPuppet>) -> array<PlayerQuickhackData> {
+  let list: array<PlayerQuickhackData> = wrappedMethod(player);
+  if !IsDefined(player) || !player.m_cnInjectHacks {
+    return list;
+  };
+  let ids: array<TweakDBID> = [t"DeviceAction.ChannelSurf", t"DeviceAction.CrankItUp", t"DeviceAction.TurnItDown", t"DeviceAction.TurnOn", t"DeviceAction.TurnOff"];
+  let i: Int32 = 0;
+  let j: Int32;
+  let record: ref<ObjectAction_Record>;
+  let present: Bool;
+  while i < ArraySize(ids) {
+    record = TweakDBInterface.GetObjectActionRecord(ids[i]);
+    present = false;
+    j = 0;
+    while j < ArraySize(list) {
+      if Equals(list[j].actionRecord.GetID(), ids[i]) {
+        present = true;
+      };
+      j += 1;
+    };
+    if IsDefined(record) && !present {
+      ArrayPush(list, new PlayerQuickhackData(ItemID.None(), record, 5));
+    };
+    i += 1;
+  };
+  return list;
+}
 
 @addMethod(TVControllerPS)
 private final func ActionChannelSurf() -> ref<ChannelSurfAction> {
@@ -65,7 +97,6 @@ private final func ActionChannelSurf() -> ref<ChannelSurfAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.ChannelSurf");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -78,7 +109,6 @@ private final func ActionCrankItUp() -> ref<CrankItUpAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.CrankItUp");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -91,11 +121,9 @@ private final func ActionTurnItDown() -> ref<TurnItDownAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.TurnItDown");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
-
 
 @addMethod(RadioControllerPS)
 private final func ActionChannelSurf() -> ref<ChannelSurfAction> {
@@ -105,7 +133,6 @@ private final func ActionChannelSurf() -> ref<ChannelSurfAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.ChannelSurf");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -118,7 +145,6 @@ private final func ActionCrankItUp() -> ref<CrankItUpAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.CrankItUp");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -131,11 +157,9 @@ private final func ActionTurnItDown() -> ref<TurnItDownAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.TurnItDown");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
-
 
 @addMethod(TVControllerPS)
 private final func ActionTurnOn() -> ref<TurnOnAction> {
@@ -145,7 +169,6 @@ private final func ActionTurnOn() -> ref<TurnOnAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.TurnOn");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -158,7 +181,6 @@ private final func ActionTurnOff() -> ref<TurnOffAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.TurnOff");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -184,7 +206,6 @@ protected func GetQuickHackActions(out outActions: array<ref<DeviceAction>>, con
   wrappedMethod(outActions, context);
 }
 
-
 @addMethod(RadioControllerPS)
 private final func ActionTurnOn() -> ref<TurnOnAction> {
   let action: ref<TurnOnAction> = new TurnOnAction();
@@ -193,7 +214,6 @@ private final func ActionTurnOn() -> ref<TurnOnAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.TurnOn");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -206,7 +226,6 @@ private final func ActionTurnOff() -> ref<TurnOffAction> {
   action.SetProperties();
   action.AddDeviceName(this.m_deviceName);
   action.SetObjectActionID(t"DeviceAction.TurnOff");
-  this.CN_GetHackSystem().RegisterDeviceAction(action);
   action.CreateInteraction();
   return action;
 }
@@ -276,7 +295,6 @@ protected cb func OnTurnOff(evt: ref<TurnOffAction>) -> EntityNotificationType {
   this.UseNotifier(evt);
   return EntityNotificationType.SendThisEventToEntity;
 }
-
 
 @addMethod(RadioControllerPS)
 protected cb func OnChannelSurf(evt: ref<ChannelSurfAction>) -> EntityNotificationType {

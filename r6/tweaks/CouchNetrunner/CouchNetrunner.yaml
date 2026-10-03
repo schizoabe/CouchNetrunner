@@ -1,0 +1,285 @@
+
+CustomUIIcon.TakeControl:
+  $type: UIIcon
+  atlasPartName: TakeControl
+  atlasResourcePath: 'base\gameplay\gui\common\icons\quickhacks_icons.inkatlas'
+
+CustomUIIcon.clue_audio:
+  $type: UIIcon
+  atlasPartName: clue_audio
+  atlasResourcePath: 'base\gameplay\gui\widgets\mappins\atlas_gameplay_loop_solid.inkatlas'
+
+CustomUIIcon.ToggleState:
+  $type: UIIcon
+  atlasPartName: ToggleState
+  atlasResourcePath: 'base\gameplay\gui\common\icons\quickhacks_icons.inkatlas'
+
+UICaptionIcon.ChannelSurf:
+  $type: ChoiceCaptionIconPart
+  mappinVariant: Mappins.InvalidVariant
+  partType: ChoiceCaptionPartType.Icon
+  texturePartID: CustomUIIcon.TakeControl
+  enumName: ChannelSurf
+
+CustomInteractions.ChannelSurf:
+  $base: Interactions.PingHack
+  caption: LocKey#3610001
+  description: LocKey#3610002
+  captionIcon: UICaptionIcon.ChannelSurf
+  name: ChannelSurf
+  action: Choice1
+
+DeviceAction.ChannelSurf_BaseCost:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.Memory
+  value: 1.0
+
+DeviceAction.ChannelSurf_UploadTime:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.QuickHackUpload
+  value: 0.5
+
+DeviceAction.ChannelSurfCost:
+  $base: DeviceAction.DeviceQuickHack_inline1
+  costMods:
+    - QuickHack.MemoryCostReductionMod
+    - QuickHack.TargetResistance
+    - QuickHack.ConsumableCostReduction
+    - QuickHack.DeviceMemoryCostReductionMod
+    - DeviceAction.ChannelSurf_BaseCost
+
+DeviceAction.ChannelSurf:
+  $base: DeviceAction.PingDevice
+  actionName: ChannelSurf
+  costs:
+    - DeviceAction.ChannelSurfCost
+  objectActionUI: CustomInteractions.ChannelSurf
+  activationTime:
+    - QuickHack.QuickHack_inline0
+    - QuickHack.QuickHack_inline1
+    - QuickHack.QuickHack_inline2
+    - DeviceAction.DeviceQuickHack_inline0
+    - DeviceAction.ChannelSurf_UploadTime
+  startEffects:
+    - QuickHack.QuickHack_inline12
+    - QuickHack.QuickHack_inline13
+  targetActivePrereqs: []
+  instigatorPrereqs: []
+
+UICaptionIcon.CrankItUp:
+  $type: ChoiceCaptionIconPart
+  mappinVariant: Mappins.InvalidVariant
+  partType: ChoiceCaptionPartType.Icon
+  texturePartID: CustomUIIcon.clue_audio
+  enumName: CrankItUp
+
+CustomInteractions.CrankItUp:
+  $base: Interactions.PingHack
+  caption: LocKey#3610003
+  description: LocKey#3610004
+  captionIcon: UICaptionIcon.CrankItUp
+  name: CrankItUp
+  action: Choice1
+
+DeviceAction.CrankItUp_BaseCost:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.Memory
+  value: 1.0
+
+DeviceAction.CrankItUp_UploadTime:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.QuickHackUpload
+  value: 0.3
+
+DeviceAction.CrankItUpCost:
+  $base: DeviceAction.DeviceQuickHack_inline1
+  costMods:
+    - QuickHack.MemoryCostReductionMod
+    - QuickHack.TargetResistance
+    - QuickHack.ConsumableCostReduction
+    - QuickHack.DeviceMemoryCostReductionMod
+    - DeviceAction.CrankItUp_BaseCost
+
+DeviceAction.CrankItUp:
+  $base: DeviceAction.PingDevice
+  actionName: CrankItUp
+  costs:
+    - DeviceAction.CrankItUpCost
+  objectActionUI: CustomInteractions.CrankItUp
+  activationTime:
+    - QuickHack.QuickHack_inline0
+    - QuickHack.QuickHack_inline1
+    - QuickHack.QuickHack_inline2
+    - DeviceAction.DeviceQuickHack_inline0
+    - DeviceAction.CrankItUp_UploadTime
+  startEffects:
+    - QuickHack.QuickHack_inline12
+    - QuickHack.QuickHack_inline13
+  targetActivePrereqs: []
+  instigatorPrereqs: []
+
+UICaptionIcon.TurnItDown:
+  $type: ChoiceCaptionIconPart
+  mappinVariant: Mappins.InvalidVariant
+  partType: ChoiceCaptionPartType.Icon
+  texturePartID: CustomUIIcon.clue_audio
+  enumName: TurnItDown
+
+CustomInteractions.TurnItDown:
+  $base: Interactions.PingHack
+  caption: LocKey#3610005
+  description: LocKey#3610006
+  captionIcon: UICaptionIcon.TurnItDown
+  name: TurnItDown
+  action: Choice1
+
+DeviceAction.TurnItDown_BaseCost:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.Memory
+  value: 1.0
+
+DeviceAction.TurnItDown_UploadTime:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.QuickHackUpload
+  value: 0.3
+
+DeviceAction.TurnItDownCost:
+  $base: DeviceAction.DeviceQuickHack_inline1
+  costMods:
+    - QuickHack.MemoryCostReductionMod
+    - QuickHack.TargetResistance
+    - QuickHack.ConsumableCostReduction
+    - QuickHack.DeviceMemoryCostReductionMod
+    - DeviceAction.TurnItDown_BaseCost
+
+DeviceAction.TurnItDown:
+  $base: DeviceAction.PingDevice
+  actionName: TurnItDown
+  costs:
+    - DeviceAction.TurnItDownCost
+  objectActionUI: CustomInteractions.TurnItDown
+  activationTime:
+    - QuickHack.QuickHack_inline0
+    - QuickHack.QuickHack_inline1
+    - QuickHack.QuickHack_inline2
+    - DeviceAction.DeviceQuickHack_inline0
+    - DeviceAction.TurnItDown_UploadTime
+  startEffects:
+    - QuickHack.QuickHack_inline12
+    - QuickHack.QuickHack_inline13
+  targetActivePrereqs: []
+  instigatorPrereqs: []
+
+UICaptionIcon.TurnOn:
+  $type: ChoiceCaptionIconPart
+  mappinVariant: Mappins.InvalidVariant
+  partType: ChoiceCaptionPartType.Icon
+  texturePartID: CustomUIIcon.ToggleState
+  enumName: TurnOn
+
+CustomInteractions.TurnOn:
+  $base: Interactions.PingHack
+  caption: LocKey#3610007
+  description: LocKey#3610008
+  captionIcon: UICaptionIcon.TurnOn
+  name: TurnOn
+  action: Choice1
+
+DeviceAction.TurnOn_BaseCost:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.Memory
+  value: 1.0
+
+DeviceAction.TurnOn_UploadTime:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.QuickHackUpload
+  value: 0.5
+
+DeviceAction.TurnOnCost:
+  $base: DeviceAction.DeviceQuickHack_inline1
+  costMods:
+    - QuickHack.MemoryCostReductionMod
+    - QuickHack.TargetResistance
+    - QuickHack.ConsumableCostReduction
+    - QuickHack.DeviceMemoryCostReductionMod
+    - DeviceAction.TurnOn_BaseCost
+
+DeviceAction.TurnOn:
+  $base: DeviceAction.PingDevice
+  actionName: TurnOn
+  costs:
+    - DeviceAction.TurnOnCost
+  objectActionUI: CustomInteractions.TurnOn
+  activationTime:
+    - QuickHack.QuickHack_inline0
+    - QuickHack.QuickHack_inline1
+    - QuickHack.QuickHack_inline2
+    - DeviceAction.DeviceQuickHack_inline0
+    - DeviceAction.TurnOn_UploadTime
+  startEffects:
+    - QuickHack.QuickHack_inline12
+    - QuickHack.QuickHack_inline13
+  targetActivePrereqs: []
+  instigatorPrereqs: []
+
+UICaptionIcon.TurnOff:
+  $type: ChoiceCaptionIconPart
+  mappinVariant: Mappins.InvalidVariant
+  partType: ChoiceCaptionPartType.Icon
+  texturePartID: CustomUIIcon.ToggleState
+  enumName: TurnOff
+
+CustomInteractions.TurnOff:
+  $base: Interactions.PingHack
+  caption: LocKey#3610009
+  description: LocKey#3610010
+  captionIcon: UICaptionIcon.TurnOff
+  name: TurnOff
+  action: Choice1
+
+DeviceAction.TurnOff_BaseCost:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.Memory
+  value: 1.0
+
+DeviceAction.TurnOff_UploadTime:
+  $type: gamedataConstantStatModifier_Record
+  modifierType: Additive
+  statType: BaseStats.QuickHackUpload
+  value: 0.5
+
+DeviceAction.TurnOffCost:
+  $base: DeviceAction.DeviceQuickHack_inline1
+  costMods:
+    - QuickHack.MemoryCostReductionMod
+    - QuickHack.TargetResistance
+    - QuickHack.ConsumableCostReduction
+    - QuickHack.DeviceMemoryCostReductionMod
+    - DeviceAction.TurnOff_BaseCost
+
+DeviceAction.TurnOff:
+  $base: DeviceAction.PingDevice
+  actionName: TurnOff
+  costs:
+    - DeviceAction.TurnOffCost
+  objectActionUI: CustomInteractions.TurnOff
+  activationTime:
+    - QuickHack.QuickHack_inline0
+    - QuickHack.QuickHack_inline1
+    - QuickHack.QuickHack_inline2
+    - DeviceAction.DeviceQuickHack_inline0
+    - DeviceAction.TurnOff_UploadTime
+  startEffects:
+    - QuickHack.QuickHack_inline12
+    - QuickHack.QuickHack_inline13
+  targetActivePrereqs: []
+  instigatorPrereqs: []
